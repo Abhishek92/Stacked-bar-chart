@@ -10,8 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.android.chartdisplay.MainActivity">
 
-   <com.android.chartdisplay.StackedBarChart
+   <com.android.chartdisplay.StackedBarChartView
        android:id="@+id/bar_chart"
-       android:layout_width="match_parent"
+       android:layout_width="80dp"
        android:layout_height="510dp" />
 </RelativeLayout>
