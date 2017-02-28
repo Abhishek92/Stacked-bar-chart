@@ -58,6 +58,7 @@ public class StackedBarChartView extends View {
         super.onDraw(canvas);
         barHeight = canvas.getHeight();
         barWidth = canvas.getWidth();
+        int textY = 0;
         int totalValue = getTotalValue();
         for (int i = 0; i <mBarData.size() ; i++) {
             StackedBarChartData stackedBarChartData = mBarData.get(i);
@@ -66,7 +67,10 @@ public class StackedBarChartView extends View {
             float percentageVal = ((float)stackedBarChartData.getValue() / (float) totalValue) * 100;
             float height = mBarData.size() - 1 != i ? ((float) barHeight /100) * percentageVal : canvas.getHeight();
             canvas.drawRect(0,lastHeight, barWidth, lastHeight + height, mBarPaint);
-            int textY = (int)height - (int)(canvas.getHeight() - height) / 2;
+            if(i == 0)
+                textY = (int)((lastHeight + height) / 2);
+            else
+                textY = (int)(((barHeight - lastHeight) / 2) + lastHeight);
             canvas.drawText(stackedBarChartData.getTextValue(), barWidth/2, textY, mTextPaint);
             lastHeight = lastHeight + height;
         }

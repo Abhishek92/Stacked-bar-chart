@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         List<StackedBarChartData> mList = new ArrayList<>();
         mList.add(stackedBarChartData);
         mList.add(stackedBarChartData2);
-        //mList.add(stackedBarChartData3);
+        mList.add(stackedBarChartData3);
         stackedBarChart.setBarData(mList);
         /*StackedBarChart stackedBarChart = (StackedBarChart) findViewById(R.id.bar_chart);
         List<ChartData> chartDatas = new ArrayList<>();
