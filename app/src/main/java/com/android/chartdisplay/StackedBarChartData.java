@@ -1,35 +1,36 @@
 package com.android.chartdisplay;
 
+import android.graphics.Color;
 /**
  * Created by hp pc on 28-02-2017.
  */
 
 public class StackedBarChartData {
-    private int value;
-    private int color;
-    private String textValue;
+    private float value;
+    private String color;
 
-    public int getValue() {
+    public float getValue()
+    {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value)
+    {
         this.value = value;
     }
 
-    public int getColor() {
-        return color;
+    public int getColor()
+    {
+        return Color.parseColor(color);
     }
 
-    public void setColor(int color) {
+    public void setColor(String color)
+    {
         this.color = color;
     }
 
-    public String getTextValue() {
-        return textValue;
-    }
-
-    public void setTextValue(String textValue) {
-        this.textValue = textValue;
+    public String getTextValue()
+    {
+        return String.valueOf(value);
     }
 }
