@@ -12,6 +12,6 @@
 
    <com.android.chartdisplay.StackedBarChartView
        android:id="@+id/bar_chart"
-       android:layout_width="80dp"
-       android:layout_height="510dp" />
+       android:layout_width="510dp"
+       android:layout_height="80dp" />
 </RelativeLayout>

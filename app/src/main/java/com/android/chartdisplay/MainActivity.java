@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StackedBarChartView stackedBarChart = (StackedBarChartView) findViewById(R.id.bar_chart);
+        stackedBarChart.setOrientation(StackedBarChartView.HORIZONTAL);
 
         StackedBarChartData stackedBarChartData = new StackedBarChartData();
         stackedBarChartData.setValue(60);
