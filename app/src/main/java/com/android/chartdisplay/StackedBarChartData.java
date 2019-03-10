@@ -7,7 +7,7 @@ import android.graphics.Color;
 
 public class StackedBarChartData {
     private float value;
-    private String color;
+    private int color;
 
     public float getValue()
     {
@@ -21,16 +21,12 @@ public class StackedBarChartData {
 
     public int getColor()
     {
-        return Color.parseColor(color);
+        return color;
     }
 
-    public void setColor(String color)
+    public void setColor(int color)
     {
         this.color = color;
     }
 
-    public String getTextValue()
-    {
-        return String.valueOf(value);
-    }
 }

@@ -14,30 +14,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         StackedBarChartView stackedBarChart = (StackedBarChartView) findViewById(R.id.bar_chart);
         stackedBarChart.setOrientation(StackedBarChartView.HORIZONTAL);
+        stackedBarChart.setGapInBetween(4f);
 
         StackedBarChartData stackedBarChartData = new StackedBarChartData();
-        stackedBarChartData.setValue(60);
-        stackedBarChartData.setColor("#00ffff");
+        stackedBarChartData.setValue(20);
+        stackedBarChartData.setColor(getResources().getColor(R.color.colorFirst));
 
         StackedBarChartData stackedBarChartData2 = new StackedBarChartData();
-        stackedBarChartData2.setValue(40);
-        stackedBarChartData2.setColor("#00ff00");
+        stackedBarChartData2.setValue(20);
+        stackedBarChartData2.setColor(getResources().getColor(R.color.colorSecond));
 
         StackedBarChartData stackedBarChartData3 = new StackedBarChartData();
-        stackedBarChartData3.setValue(10);
-        stackedBarChartData3.setColor("#000000");
+        stackedBarChartData3.setValue(60);
+        stackedBarChartData3.setColor(getResources().getColor(R.color.colorThird));
 
-        StackedBarChartData stackedBarChartData4 = new StackedBarChartData();
-        stackedBarChartData4.setValue(5);
-        stackedBarChartData4.setColor("#0000ff");
 
         List<StackedBarChartData> mList = new ArrayList<>();
         mList.add(stackedBarChartData);
         mList.add(stackedBarChartData2);
         mList.add(stackedBarChartData3);
-        mList.add(stackedBarChartData4);
         stackedBarChart.setBarData(mList);
 
-        stackedBarChart.invalidate();
     }
 }

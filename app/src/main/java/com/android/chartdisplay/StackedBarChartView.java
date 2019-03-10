@@ -3,7 +3,11 @@ package com.android.chartdisplay;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Region;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -21,6 +25,7 @@ public class StackedBarChartView extends View {
     public static int VERTICAL = 2;
 
     private int orientation;
+    private float gapInDp;
 
     public StackedBarChartView(Context context) {
         super(context);
@@ -49,6 +54,15 @@ public class StackedBarChartView extends View {
         this.orientation = orientation;
     }
 
+    public void setGapInBetween(float gapInDp){
+        this.gapInDp = gapInDp;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -65,14 +79,16 @@ public class StackedBarChartView extends View {
         float barWidth = canvas.getWidth();
         float lastWidth = 0f;
         float totalValue = getTotalValue();
+        gapInDp = convertDpToPixel(gapInDp, getContext());
         for (int i = 0; i < mBarData.size() ; i++) {
             StackedBarChartData stackedBarChartData = mBarData.get(i);
             mBarPaint.setStyle(Paint.Style.FILL);
             mBarPaint.setColor(stackedBarChartData.getColor());
             float percentageVal = (stackedBarChartData.getValue() / totalValue) * 100;
             float width = mBarData.size() - 1 != i ? (barWidth / 100) * percentageVal : canvas.getWidth();
+            int radius = getRadius(i, mBarData.size());
             canvas.drawRect(lastWidth, 0, lastWidth + width, barHeight, mBarPaint);
-            lastWidth = lastWidth + width;
+            lastWidth = lastWidth + width + gapInDp;
         }
     }
 
@@ -81,18 +97,27 @@ public class StackedBarChartView extends View {
         float barWidth = canvas.getWidth();
         float lastHeight = 0f;
         float totalValue = getTotalValue();
+        gapInDp = convertDpToPixel(gapInDp, getContext());
         for (int i = 0; i <mBarData.size() ; i++) {
             StackedBarChartData stackedBarChartData = mBarData.get(i);
             mBarPaint.setStyle(Paint.Style.FILL);
             mBarPaint.setColor(stackedBarChartData.getColor());
             float percentageVal = (stackedBarChartData.getValue() / totalValue) * 100;
             float height = mBarData.size() - 1 != i ? (barHeight / 100) * percentageVal : canvas.getHeight();
-            canvas.drawRect(0, lastHeight, barWidth, lastHeight + height, mBarPaint);
-            lastHeight = lastHeight + height;
+            int radius = getRadius(i, mBarData.size());
+            canvas.drawRect(0, lastHeight, barWidth, lastHeight + height,mBarPaint);
+            lastHeight = lastHeight + height + gapInDp;
         }
     }
 
+    public static float convertDpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
 
+
+    private int getRadius(int position, int size){
+        return position == 0 || position == size - 1 ? 10 : 0;
+    }
 
     private float getTotalValue()
     {
@@ -106,5 +131,6 @@ public class StackedBarChartView extends View {
     public void setBarData(List<StackedBarChartData> mBarDataList)
     {
         mBarData = mBarDataList;
+        invalidate();
     }
 }
