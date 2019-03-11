@@ -54,7 +54,7 @@ public class StackedBarChartView extends View {
         this.orientation = orientation;
     }
 
-    public void setGapInBetween(float gapInDp){
+    public void setMarginInBetween(float gapInDp){
         this.gapInDp = gapInDp;
     }
 

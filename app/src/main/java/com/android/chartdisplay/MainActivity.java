@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         StackedBarChartView stackedBarChart = (StackedBarChartView) findViewById(R.id.bar_chart);
         stackedBarChart.setOrientation(StackedBarChartView.HORIZONTAL);
-        stackedBarChart.setGapInBetween(4f);
+        stackedBarChart.setMarginInBetween(4f);
 
         StackedBarChartData stackedBarChartData = new StackedBarChartData();
         stackedBarChartData.setValue(20);
